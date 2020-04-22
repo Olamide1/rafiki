@@ -3,12 +3,17 @@ const fastify = require('fastify')({
     logger: true
 })
 const cors = require('cors')
+
+
 fastify.use(cors())
+fastify.options('*', cors())
 const mongoose = require('mongoose')
 const routes = require('./routes')
 routes.forEach((route, index) => {
   fastify.route(route)
 })  
+
+
 
 mongoose.connect('mongodb://localhost/gdoc')
 .then(() => console.log('MongoDB connected...'))
@@ -17,10 +22,11 @@ mongoose.connect('mongodb://localhost/gdoc')
 fastify.get('/', async (request, reply) => {
     return { hello: 'world' }
 })
+
   // Run the server!
 const start = async () => {
     try {
-      await fastify.listen(3000)
+      await fastify.listen(process.env.PORT || 3000)
       fastify.log.info(`server listening on ${fastify.server.address().port}`)
     } catch (err) {
       fastify.log.error(err)
