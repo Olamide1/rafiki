@@ -3,7 +3,7 @@ const boom = require('boom')
 const User = require('../models/User')
 
 
-// Add a new car
+// Add a new user
 exports.signup = async (req, reply) => {
     try {
         var check = User.find({'email': req.body.email})

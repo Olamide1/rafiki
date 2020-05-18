@@ -2,8 +2,8 @@
 const fastify = require('fastify')({
     logger: true
 })
-const cors = require('cors')
 
+const cors = require('cors')
 
 fastify.use(cors())
 fastify.options('*', cors())
