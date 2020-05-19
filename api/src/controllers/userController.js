@@ -20,11 +20,11 @@ exports.signup = async (req, reply) => {
 
 exports.login = async (req, reply) => {
     try {
-        var email = req.body.email
+        var username = req.body.username
         var password = req.body.password
         const users = User.find({
             $and: [
-                {'email': email, 'password': password}
+                {'username': username, 'password': password}
             ]
         })
         return users
